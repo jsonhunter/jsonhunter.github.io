@@ -19,14 +19,43 @@ header {
   width: 100%;
   clear: both;
   overflow: hidden; }
+  .wrapper .contain {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 10px; }
+    .wrapper .contain nav.nav-top {
+      text-align: right;
+      font-size: 18px;
+      padding: 10px; }
+      .wrapper .contain nav.nav-top a {
+        display: inline-block;
+        padding: 10px;
+        text-decoration: none;
+        color: gold;
+        font-weight: 900; }
+      .wrapper .contain nav.nav-top a:hover {
+        background: #000000;
+        border-radius: 5px; }
+      .wrapper .contain nav.nav-top a.active {
+        border-radius: 5px;
+        background: gold;
+        color: #000000;
+        font-weight: 900; }
+    .wrapper .contain div.main {
+      padding: 12px;
+      font-size: 24px; }
+      .wrapper .contain div.main p {
+        padding: 3px; }
 
 @media all and (min-width: 1200px) {
   header {
+    height: 80px;
     padding: 20px 50px;
-    background-size: 25%; } }
+    background-size: auto 100%; } }
 @media all and (max-width: 1199px) {
   header {
+    height: 80px;
     padding: 10px;
-    background-size: 100%; } }
+    background-size: 90%; } }
 
 /*# sourceMappingURL=style.css.map */
