@@ -45,7 +45,10 @@ header {
       padding: 12px;
       font-size: 24px; }
       .wrapper .contain div.main p {
-        padding: 3px; }
+        padding: 8px; }
+        .wrapper .contain div.main p a {
+          color: gold;
+          text-decoration: #faff1c; }
 
 @media all and (min-width: 1200px) {
   header {
