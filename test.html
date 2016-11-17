@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="display: block"></canvas>
+
+</body>
+<script>
+    var canvas=document.getElementById("canvas");
+    canvas.style.background="rgb(0, 130, 150)";
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+//    window.onresize=resizeCanvas;
+    var cX=canvas.width/2;
+    var cY=canvas.height/2;
+    function resizeCanvas(){
+        canvas.width=window.innerWidth;
+        canvas.height=window.innerHeight;
+    }
+    resizeCanvas();
+
+    if (canvas.getContext){
+        var ctx=canvas.getContext("2d");
+        ctx.beginPath();
+        var cc=ctx.arc(500,500,100,0,Math.PI*2,true);
+        ctx.stroke();
+    }
+//    setInterval(function(){
+//        var a=500+(Math.random()*10-5)*0.05;
+//        var b=500+(Math.random()*10-5)*0.05;
+//        var r=100;
+//        ctx.beginPath();
+//        ctx.arc(a,b,r,0,Math.PI*2,true);
+//        ctx.clearRect(0,0,canvas.width,canvas.height)
+//        ctx.stroke();
+//    },1)
+</script>
+</html>
