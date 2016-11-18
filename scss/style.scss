@@ -15,6 +15,9 @@ header{
   text-align: left;
   background: url("../images/ttmoxiaomo.png")no-repeat top center;
 }
+ul,li{
+  list-style: none;
+}
 .wrapper{
   width: 100%;
   clear: both;
@@ -54,6 +57,49 @@ header{
         a{
           color: gold;
           text-decoration: #faff1c;
+        }
+      }
+      ul{
+        li{
+          padding: 10px;
+          h3{
+            font-size: 24px;
+            color: gold;
+            padding: 10px 0;
+          }
+          div.lists{
+            clear: both;
+            overflow: hidden;
+            span{
+              display: block;
+              width: 25%;
+              padding: 5px 0;
+              float: left;
+              a{
+                color: #ffffff;
+                display: inline-block;
+                text-decoration: none;
+                font-size: 18px;
+              }
+              a:hover{
+                color: #faff1c;
+                text-shadow: 0 0px 5px gold;
+              }
+            }
+          }
+          div.lists:after{
+            content: "";
+            display: block;
+            float: left;
+            width: 100%;
+            height: 10px;
+            margin-top: 10px;
+            padding: 10px;
+            padding-bottom: 0;
+            box-sizing: border-box;
+            background: -webkit-gradient( linear, left top, right top, color-stop(0,#fff), color-stop(1,#fff) ),-webkit-gradient( linear, left top, right top, color-stop(0,gold), color-stop(1,#74baff) );
+            background-clip: content-box,padding-box;
+          }
         }
       }
     }
