@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"  style="display: block"></canvas>
+<script>
+    var canvas=document.getElementById("canvas");
+    var context=canvas.getContext("2d");
+    var w,h;
+    var clearColor='rgba(0, 0, 0, .1)'
+    w=canvas.width=window.innerWidth;
+    h=canvas.height=window.innerHeight;
+    var  words = "0123456789qwertyuiopasdfghjklzxcvbnm,./;'\\[]QWERTYUIOP{}ASDFGHJHJKL:ZXCVBBNM<>?";
+    var words_Arr=words.split('');
+    var speed=1;//设置运动的速度
+    var fontSize=18;//设置字体的大小，字体的大小决定了频幕内能容纳多少列；
+    var colNum=Math.floor(w/18);//列数；
+    var cH=[];
+    for(var i=0;i<colNum;i++){
+        cH[i]=1;
+    }
+
+    function draw(){
+        context.save();
+        context.beginPath();
+        context.fillStyle="#168fdc";
+        context.font=fontSize+"px arial";
+        for(var i=0;i<cH.length;i++){
+            var text = words_Arr[Math.floor(Math.random() * words_Arr.length)];
+            context.fillText(text, i*fontSize,cH[i]*fontSize);
+            if(cH[i]*fontSize>h&&Math.random()>0.98){
+                cH[i]=1;
+            }
+            cH[i]++;
+        }
+        context.restore();
+    }
+    //    draw();
+    (function drawFram(){
+        window.requestAnimationFrame(drawFram,canvas);
+        context.fillStyle = clearColor;
+        context.fillRect(0, 0, w, h);
+        draw();
+    })();
+
+    //resize
+    function resize(){
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    }
+    canvas.addEventListener("resize", resize);
+</script>
+</body>
+</html>
