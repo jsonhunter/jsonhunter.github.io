@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"  style="background: #168CA8;display: block"></canvas>
+<script>
+    var canvas=document.getElementById('canvas');
+    canvas.width=window.innerWidth;
+    canvas.height = window.innerHeight;
+    if(canvas.getContext){
+        var context=canvas.getContext('2d');
+
+        function draw(x,y,l,r,alpha){
+            var len=3;
+            context.save();
+            context.beginPath();
+            context.strokeStyle='#fff';
+            context.globalAlpha=alpha;
+            context.moveTo(x,y);
+            context.lineTo(l*Math.cos(r)+x,y-l*Math.sin(r));
+            context.lineTo(l*(Math.cos(r)+Math.sin(r))+x,y-l*(Math.sin(r)+Math.cos(r)));
+            context.lineTo(l*(Math.cos(r)+2*Math.sin(r))+x,y-l*Math.sin(r));
+            context.lineTo(2*l*(Math.cos(r)+Math.sin(r))+x,y);
+            context.lineTo(l*(Math.cos(r)+2*Math.sin(r))+x,y+l*Math.sin(r));
+            context.lineTo(l*(Math.cos(r)+Math.sin(r))+x,y+l*(Math.sin(r)+Math.cos(r)));
+            context.lineTo(l*Math.cos(r)+x,y+l*Math.sin(r));
+            context.lineTo(x,y);
+            context.stroke();
+            context.closePath();
+            context.restore();
+        }
+        var arr=new Array;
+        for(var i=0;i<Math.random()*50+80;i++){
+            var x=Math.random()*canvas.width;
+            var y=Math.random()*canvas.height;
+            var z=Math.random()*2+2;
+            var k=Math.random();
+            var speed = Math.random()*1+2;
+            var alpha = Math.random();
+            arr[i]={x,y,z,k,speed,alpha}
+        }
+
+        (function drawFrame(){
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0,0,canvas.width,canvas.height);//清空整个画布
+            for(var n=0;n<arr.length;n++){
+                draw(arr[n].x,arr[n].y,arr[n].z,Math.PI/6,arr[n].alpha);
+                if(arr[n].y>canvas.height||Math.random()>0.999||arr[n].alpha<0){
+                    arr[n].alpha=Math.random();
+                    arr[n].y=0;
+                    arr[n].x=Math.random()*canvas.width;
+                }else {
+                    arr[n].y += arr[n].speed;
+                    arr[n].alpha = arr[n].alpha-0.002;
+                    if(arr[n].alpha<0){
+                        arr[n].alpha = 0;
+                    }
+                    (arr[n].k>0.5) ? arr[n].x++ : arr[n].x--
+                }
+            }
+
+        })();
+    }
+</script>
+</body>
+</html>

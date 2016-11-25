@@ -18,10 +18,17 @@
         var canvas = document.getElementById('canvas'),
         //将canvas传入，该方法会返回一个包含属性x和y的对象
                 mouse = utils.captureMouse(canvas);
+        var context=canvas.getContext('2d');
 
         //为canvas绑定mousedown事件，当鼠标按下的时候打印出当前鼠标相对于canvas的坐标值
         canvas.addEventListener('mousedown',function(event){
-            console.log("x:" +mouse.x +",y:" + mouse.y);
+            context.fillStyle = "#ccc";
+            context.fillRect(0,0,500,500);
+            context.font = "30px Courier New";
+            //设置字体填充颜色
+            context.fillStyle = "blue";
+            //从坐标点(50,50)开始绘制文字
+            context.fillText("x:" +mouse.x +",y:" + mouse.y, 50, 50);
         })}
 </script>
 </body>
