@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"  style="display: block"></canvas>
+<script>
+    var radius=2*Math.PI/12
+        var canvas=document.getElementById('canvas');
+        x=canvas.width=window.innerWidth;
+        y=canvas.height = window.innerHeight;
+        var context=canvas.getContext('2d');
+
+
+
+    function back(context){
+        context.save();
+        context.fillStyle="#ffffff";
+        context.strokeStyle="#168fdc";
+        context.lineWidth=13;
+        context.beginPath();
+        context.arc(x/2,y/2,180,0,2*Math.PI,false);
+        context.stroke();
+        context.fill();
+        context.restore();
+    }
+
+    function cal(i,a,b){
+        context.fillStyle="#333";
+        context.font="24px bold Arial";
+        switch (i){
+            case 1:
+                context.fillText("I" ,a,b);
+                return;
+            case 2:
+                context.fillText("II" ,a,b);
+                return;
+            case 3:
+                context.fillText("III" ,a,b);
+                return;
+            case 4:
+                context.fillText("IV" ,a,b);
+                return;
+            case 5:
+                context.fillText("V" ,a,b);
+                return;
+            case 6:
+                context.fillText("VI" ,a,b);
+                return;
+            case 7:
+                context.fillText("VII" ,a,b);
+                return;
+            case 8:
+                context.fillText("VIII" ,a,b);
+                return;
+            case 9:
+                context.fillText("IX" ,a,b);
+                return;
+            case 10:
+                context.fillText("X" ,a,b);
+                return;
+            case 11:
+                context.fillText("XI" ,a,b);
+                return;
+            case 12:
+                context.fillText("XII" ,a,b);
+                return;
+
+        };
+
+    }
+    function writeNumber(context){
+        context.save();
+        var r=150;
+        for(var i=1;i<=12;i++){
+            var a= x/2 + Math.sin(radius*i)*r-12;
+            var b= y/2 - Math.cos(radius*i)*r+12;
+            cal(i,a,b)
+        }
+        context.restore();
+    }
+    function date(context){
+        var r=120;
+        var R=80;
+        var deg=Math.PI*2/60;
+        var radius=Math.PI*2/12;
+        var date=new Date();
+        var hour=date.getHours();
+        var min=date.getMinutes();
+        var c= x/2 + Math.sin(deg*min)*r;
+        var d= y/2 - Math.cos(deg*min)*r;
+        var e= x/2 + Math.sin(radius*(hour+min/60))*R;
+        var f= y/2 - Math.cos(radius*(hour+min/60))*R;
+        context.save();
+        context.beginPath();
+        context.strokeStyle="#168fdc";
+        context.lineWidth=4;
+        context.moveTo(x/2,y/2);
+        context.lineTo(c,d);
+        context.stroke();
+        context.restore();
+        context.save();
+        context.beginPath();
+        context.strokeStyle="red";
+        context.lineWidth=6;
+        context.moveTo(x/2,y/2);
+        context.lineTo(e,f);
+        context.closePath();
+        context.stroke();
+        context.restore();
+    }
+    var t=0;
+    var arrow = function (){
+        context.clearRect(0, 0, x, y);
+        back(context);
+        writeNumber(context);
+        date(context);
+        var r=130;
+        var radius=Math.PI/30;
+        var a= x/2 + Math.sin(radius*t)*r;
+        var b= y/2 - Math.cos(radius*t)*r;
+        context.save();
+        context.beginPath();
+        context.strokeStyle="#168fdc";
+        context.moveTo(a,b);
+        context.lineTo(x/2,y/2);
+        context.stroke();
+        context.restore();
+        t++;
+    }
+        setInterval(arrow,1000)
+
+
+</script>
+</body>
+</html>
