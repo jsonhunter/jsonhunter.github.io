@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"  style="display: block"></canvas>
+<script src="../js/utils.js"></script>
+<script src="../js/ball.js"></script>
+<script>
+    window.onload = function(){
+        var canvas=document.getElementById('canvas');
+        canvas.width=window.innerWidth;
+        canvas.height = window.innerHeight;
+        var context=canvas.getContext('2d');
+        var ball = new Ball();
+        ball.x = canvas.width/2;
+        ball.y = canvas.height/2;
+        var angel = 0;
+        var range = 50;//振幅
+//        ball.draw(context);
+        (function drawFrame(){
+            window.requestAnimationFrame(drawFrame,canvas);
+            context.clearRect(0,0,canvas.width,canvas.height);
+            ball.x=canvas.width/2+Math.sin(angel)*range;
+            angel +=0.1;
+            ball.draw(context);
+        })();
+    }
+
+
+
+</script>
+</body>
+</html>
